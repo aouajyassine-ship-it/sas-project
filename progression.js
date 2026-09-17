@@ -45,3 +45,29 @@ function normaliserNom(nom) {      // Nettoyer et uniformiser un nom
     apprenants.push(object);
     return true;
 }
+function enregistrerResultat(id, jour, exercicesTermines, totalExercices, challengeTermine) {
+    for (let i = 0; i < apprenants.length; i++) {
+     if (apprenants[i].id === id) {
+     if (!validerResultat(jour, exercicesTermines, totalExercices, challengeTermine)) {
+     return false;
+}
+     for (let j = 0; j < apprenants[i].resultats.length; j++) {
+     if (apprenants[i].resultats[j].jour === jour) {
+      apprenants[i].resultats[j].exercicesTermines = exercicesTermines;
+      apprenants[i].resultats[j].totalExercices = totalExercices;
+      apprenants[i].resultats[j].challengeTermine = challengeTermine;
+      return true;
+}
+}
+     let resultat = {
+     jour: jour,
+     exercicesTermines: exercicesTermines,
+     totalExercices: totalExercices,
+     challengeTermine: challengeTermine
+};
+     apprenants[i].resultats.push(resultat);
+     return true;
+}
+}
+     return false;
+}
