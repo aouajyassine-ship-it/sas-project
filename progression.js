@@ -1,0 +1,4 @@
+function normaliserNom(nom) {
+    
+    
+}
