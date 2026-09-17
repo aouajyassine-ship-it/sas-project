@@ -1,3 +1,4 @@
+import { apprenants } from "./data.js";
 
 function normaliserNom(nom) {      // Nettoyer et uniformiser un nom
     nom = nom.trim();
@@ -27,5 +28,20 @@ function normaliserNom(nom) {      // Nettoyer et uniformiser un nom
     if (challengeTermine !== true && challengeTermine !== false){
         return false ;
     }
+    return true;
+}
+
+   function ajouterApprenant(id, nomComplet, ville) {           //Ajouter un apprenant en contrôlant les doublons d’identifiant.
+    let object = {} ;
+    for (let i = 0; i < apprenants.length; i++) {
+    if (apprenants[i].id === id) {
+       return false;
+    }
+}
+    object.id = id;
+    object.nomComplet = nomComplet;
+    object.ville = ville;
+    object.resultats = [];
+    apprenants.push(object);
     return true;
 }

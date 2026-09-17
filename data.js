@@ -33,3 +33,4 @@ const apprenants = [
         ]
     }
 ];
+export { apprenants };
