@@ -183,5 +183,5 @@ function afficherTableauDeBord() {               // Présenter les indicateurs d
   console.log("En progression :", enProgression);
   console.log("À renforcer :", aRenforcer);
 }
-afficherTableauDeBord();
+
 
