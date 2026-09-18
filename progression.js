@@ -1,16 +1,16 @@
 import { apprenants } from "./data.js";
 
 function normaliserNom(nom) {      // Nettoyer et uniformiser un nom
-    nom = nom.trim();
+     nom = nom.trim();
     let mots = nom.split(" ");
     let result = "";
-    for ( let i = 0 ; i < mots.length ; i++) {
-        let mot = mots[i];
-        let premiereLettre = mot[0].toUpperCase();
-        let reste = mot.slice(1).toLowerCase();
-        result = result + premiereLettre + reste + " ";
+    for (let i = 0; i < mots.length; i++) {
+    let mot = mots[i];
+    let premiereLettre = mot[0].toUpperCase();
+    let reste = mot.slice(1).toLowerCase();
+    result = result + premiereLettre + reste + " ";
     }
-    return result;
+    return result.trim();
 } 
 
   function validerResultat(jour, exercicesTermines, totalExercices, challengeTermine) {    // Vérifier les valeurs d’un résultat journalier.
@@ -71,3 +71,20 @@ function enregistrerResultat(id, jour, exercicesTermines, totalExercices, challe
 }
      return false;
 }
+
+function rechercherApprenant(valeur) {   // Retrouver un profil par identifiant ou par nom.
+ let idRecherche = Number(valeur);
+ for (let i = 0; i < apprenants.length; i++) {
+ if (apprenants[i].id === idRecherche) {
+   return apprenants[i];
+ }
+ if (typeof valeur === "string") {
+  let nomRecherche = normaliserNom(valeur);
+  if (apprenants[i].nomComplet === nomRecherche) {
+    return apprenants[i];
+}
+}
+}
+ return false ;    
+}
+
