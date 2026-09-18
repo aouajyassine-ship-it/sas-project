@@ -183,5 +183,15 @@ function afficherTableauDeBord() {               // Présenter les indicateurs d
   console.log("En progression :", enProgression);
   console.log("À renforcer :", aRenforcer);
 }
-
+export {
+    normaliserNom,
+    validerResultat,
+    ajouterApprenant,
+    enregistrerResultat,
+    rechercherApprenant,
+    calculerProgression,
+    filtrerParNiveau,
+    trierParProgression,
+    afficherTableauDeBord
+};
 
