@@ -157,7 +157,7 @@ function afficherTableauDeBord() {               // Présenter les indicateurs d
   let solide = 0;
   let enProgression = 0;
   let aRenforcer = 0;
-  for (let i = 0 ; i < apprenants.length ; i++) {
+  for (let i = 0 ; i < totalApprenants ; i++) {
     totalProgression = totalProgression + calculerProgression(apprenants[i]).progression;
     totalChallenges = totalChallenges + calculerProgression(apprenants[i]).challengesTermines;
     let niveau = calculerProgression(apprenants[i]).niveau;
@@ -168,8 +168,20 @@ function afficherTableauDeBord() {               // Présenter les indicateurs d
 }   else {
     aRenforcer++;
 }
-  }
-  let progressionMoyenne = totalProgression /totalApprenants ;
 }
+  let progressionMoyenne = 0;
+  if (totalApprenants > 0) {
+    progressionMoyenne = totalProgression / totalApprenants;
+}
+  console.log("===== TABLEAU DE BORD =====");
+  console.log("Total apprenants :", totalApprenants);
+  console.log("Progression moyenne :", progressionMoyenne + "%");
+  console.log("Challenges terminés :", totalChallenges);
 
+  console.log("===== NIVEAUX =====");
+  console.log("Solide :", solide);
+  console.log("En progression :", enProgression);
+  console.log("À renforcer :", aRenforcer);
+}
+afficherTableauDeBord();
 
