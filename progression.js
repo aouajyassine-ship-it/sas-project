@@ -139,3 +139,14 @@ function filtrerParNiveau(niveau) {                       //Sélectionner les pr
  } 
  return resultats;
 }
+
+function trierParProgression() {      //Classer les profils par progression décroissante.
+    let resultats = [...apprenants];  // copie le tableau apprenants
+    resultats.sort(function(apprenant1, apprenant2) {
+        let progression1 = calculerProgression(apprenant1).progression;
+        let progression2 = calculerProgression(apprenant2).progression;
+        return progression2 - progression1;
+});
+    return resultats;
+}
+
