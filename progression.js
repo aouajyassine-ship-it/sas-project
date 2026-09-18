@@ -150,3 +150,26 @@ function trierParProgression() {      //Classer les profils par progression déc
     return resultats;
 }
 
+function afficherTableauDeBord() {               // Présenter les indicateurs du groupe et les listes
+  let totalApprenants = apprenants.length;
+  let totalProgression = 0;
+  let totalChallenges = 0;
+  let solide = 0;
+  let enProgression = 0;
+  let aRenforcer = 0;
+  for (let i = 0 ; i < apprenants.length ; i++) {
+    totalProgression = totalProgression + calculerProgression(apprenants[i]).progression;
+    totalChallenges = totalChallenges + calculerProgression(apprenants[i]).challengesTermines;
+    let niveau = calculerProgression(apprenants[i]).niveau;
+    if (niveau === "Solide") {
+    solide++;
+}   else if (niveau === "En progression") {
+    enProgression++;
+}   else {
+    aRenforcer++;
+}
+  }
+  let progressionMoyenne = totalProgression /totalApprenants ;
+}
+
+
