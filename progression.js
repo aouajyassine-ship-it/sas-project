@@ -127,3 +127,15 @@ function calculerProgression(apprenant) {          //Produire les indicateurs in
     niveau: niveau
 };
 }
+
+
+function filtrerParNiveau(niveau) {                       //Sélectionner les profils d’un niveau donné
+  let resultats = [];
+  for (let i = 0; i < apprenants.length; i++) {
+     let indicateurs = calculerProgression(apprenants[i]);
+     if (indicateurs.niveau === niveau) {
+    resultats.push(apprenants[i]);  
+}
+ } 
+ return resultats;
+}
