@@ -1,5 +1,6 @@
 import { apprenants } from "./data.js";
 
+
 function normaliserNom(nom) {      // Nettoyer et uniformiser un nom
      nom = nom.trim();
     let mots = nom.split(" ");
@@ -13,7 +14,8 @@ function normaliserNom(nom) {      // Nettoyer et uniformiser un nom
     return result.trim();
 } 
 
-  function validerResultat(jour, exercicesTermines, totalExercices, challengeTermine) {    // Vérifier les valeurs d’un résultat journalier.
+
+  function validerResultat(jour, exercicesTermines, totalExercices, challengeTermine) {    // Vérifier les valeurs d’un résultat journalier
     if (jour <=7 && jour > 0 ){
         
   } else {
@@ -31,7 +33,8 @@ function normaliserNom(nom) {      // Nettoyer et uniformiser un nom
     return true;
 }
 
-   function ajouterApprenant(id, nomComplet, ville) {           //Ajouter un apprenant en contrôlant les doublons d’identifiant.
+
+   function ajouterApprenant(id, nomComplet, ville) {           //Ajouter un apprenant en contrôlant les doublons d’identifiant
     let object = {} ;
     for (let i = 0; i < apprenants.length; i++) {
     if (apprenants[i].id === id) {
@@ -45,7 +48,9 @@ function normaliserNom(nom) {      // Nettoyer et uniformiser un nom
     apprenants.push(object);
     return true;
 }
-function enregistrerResultat(id, jour, exercicesTermines, totalExercices, challengeTermine) {
+
+
+function enregistrerResultat(id, jour, exercicesTermines, totalExercices, challengeTermine) {    //Ajouter ou mettre à jour une journée
     for (let i = 0; i < apprenants.length; i++) {
      if (apprenants[i].id === id) {
      if (!validerResultat(jour, exercicesTermines, totalExercices, challengeTermine)) {
@@ -72,7 +77,8 @@ function enregistrerResultat(id, jour, exercicesTermines, totalExercices, challe
      return false;
 }
 
-function rechercherApprenant(valeur) {   // Retrouver un profil par identifiant ou par nom.
+
+function rechercherApprenant(valeur) {   // Retrouver un profil par identifiant ou par nom
  let idRecherche = Number(valeur);
  for (let i = 0; i < apprenants.length; i++) {
  if (apprenants[i].id === idRecherche) {
@@ -88,3 +94,36 @@ function rechercherApprenant(valeur) {   // Retrouver un profil par identifiant 
  return false ;    
 }
 
+
+function calculerProgression(apprenant) {          //Produire les indicateurs individuels
+   let totalExercices = 0;
+   let exercicesTermines = 0;
+   let challengesTermines = 0;
+   let progression = 0;
+   let niveau = "";
+   for ( let i = 0 ; i < apprenant.resultats.length ; i++) {
+     totalExercices = totalExercices + apprenant.resultats[i].totalExercices;
+     exercicesTermines = exercicesTermines +apprenant.resultats[i].exercicesTermines ;
+     if (apprenant.resultats[i].challengeTermine === true){
+        challengesTermines = challengesTermines + 1;
+ }
+   }
+   if (totalExercices === 0) {
+    progression = 0;
+   } else {
+    progression = exercicesTermines / totalExercices * 100;
+   }
+   if (progression >= 80) {
+       niveau = "Solide";
+   }else if (progression >= 50) {
+    niveau = "En progression";
+   } else {
+    niveau = "À renforcer";
+   }
+   return {
+    progression: progression,
+    challengesTermines: challengesTermines,
+    joursEnregistres: apprenant.resultats.length,
+    niveau: niveau
+};
+}
