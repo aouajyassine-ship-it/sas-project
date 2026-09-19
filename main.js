@@ -34,7 +34,7 @@ if (choix === "2") {
     console.log(apprenants); // console.log(JSON.stringify(apprenants, null, 2)); pour afficher les objects
 }
 if (choix === "3") {
-    let id = Number(prompt("ID : "));
+    let id = prompt("ID : ");
     let nomComplet = prompt("Nom complet : ");
     let ville = prompt("Ville : ");
     let resultat = ajouterApprenant(id, nomComplet, ville);
@@ -45,5 +45,13 @@ if (resultat === true) {
     console.log("Erreur : cet ID existe déjà.");
 }
 }
-
+if (choix === "4") {
+    let id = prompt("Identifiant de l'apprenant : ");
+    let apprenant = rechercherApprenant(id);
+if (apprenant === false) {
+        console.log("Apprenant introuvable.");
+} else {
+        console.log(apprenant);
+}
+}
 
