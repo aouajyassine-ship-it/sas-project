@@ -6,8 +6,12 @@ import {
     trierParProgression,
     afficherTableauDeBord
 } from "./progression.js";
+
+import { apprenants } from "./data.js";
+
  import promptSync from "prompt-sync";
 const prompt = promptSync();
+
 console.log("===== SAS PROGRESS CONSOLE =====");
 console.log("1. Afficher le tableau de bord");
 console.log("2. Afficher la liste des apprenants");
@@ -21,5 +25,25 @@ console.log("9. Trier les apprenants par ordre alphabétique");
 console.log("0. Quitter");
 
 let choix = prompt("Votre choix : ");
-
 console.log("Vous avez choisi :", choix);
+
+if (choix === "1") {
+    afficherTableauDeBord();
+}
+if (choix === "2") {
+    console.log(apprenants); // console.log(JSON.stringify(apprenants, null, 2)); pour afficher les objects
+}
+if (choix === "3") {
+    let id = Number(prompt("ID : "));
+    let nomComplet = prompt("Nom complet : ");
+    let ville = prompt("Ville : ");
+    let resultat = ajouterApprenant(id, nomComplet, ville);
+    console.log(apprenants);
+if (resultat === true) {
+    console.log("Apprenant ajouté avec succès.");
+} else {
+    console.log("Erreur : cet ID existe déjà.");
+}
+}
+
+
