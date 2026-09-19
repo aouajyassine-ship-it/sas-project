@@ -30,9 +30,11 @@ console.log("Vous avez choisi :", choix);
 if (choix === "1") {
     afficherTableauDeBord();
 }
+
 if (choix === "2") {
     console.log(apprenants); // console.log(JSON.stringify(apprenants, null, 2)); pour afficher les objects
 }
+
 if (choix === "3") {
     let id = prompt("ID : ");
     let nomComplet = prompt("Nom complet : ");
@@ -44,6 +46,7 @@ if (resultat === true) {
 } else {
     console.log("Erreur : cet ID existe déjà.");
 }
+
 }
 if (choix === "4") {
     let id = prompt("Identifiant de l'apprenant : ");
@@ -55,3 +58,41 @@ if (apprenant === false) {
 }
 }
 
+if (choix === "5") {
+    let id = Number(prompt("ID de l'apprenant : "));
+    let jour = Number(prompt("Jour : "));
+    let exercicesTermines = Number(prompt("Exercices terminés : "));
+    let totalExercices = Number(prompt("Total exercices : "));
+    let challengeTermine = prompt("Challenge terminé ? (true/false) : ");
+if (challengeTermine === "true") {
+    challengeTermine = true;
+} else {
+    challengeTermine = false;
+}
+    let resultat = enregistrerResultat(
+    id,
+    jour,
+    exercicesTermines,
+    totalExercices,
+    challengeTermine
+);
+    if (resultat === true) {
+        console.log("Résultat enregistré avec succès.");
+} else {
+        console.log("Erreur : résultat invalide ou apprenant introuvable.");
+}
+}
+
+if (choix === "6") {
+    let nom = prompt("Nom de l'apprenant : ");
+    let apprenant = rechercherApprenant(nom);
+if (apprenant === false) {
+    console.log("Apprenant introuvable.");
+} else {
+    console.log("===== APPRENANT TROUVÉ =====");
+    console.log("ID :", apprenant.id);
+    console.log("Nom :", apprenant.nomComplet);
+    console.log("Ville :", apprenant.ville);
+    console.log("Résultats :", apprenant.resultats);
+}
+}
