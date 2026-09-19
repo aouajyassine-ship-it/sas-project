@@ -5,6 +5,7 @@ import {
     filtrerParNiveau,
     calculerProgression,
     trierParProgression,
+    trierParNom,
     afficherTableauDeBord
 } from "./progression.js";
 
@@ -115,3 +116,14 @@ if (choix ===  "7") {
 }
 }
 
+if (choix === "8") {
+    let result = trierParProgression();
+    console.log("===== PROGRESSION DÉCROISSANTE =====");
+    for (let i = 0; i < result.length; i++) {
+        let progression = calculerProgression(result[i]);
+        console.log(
+            result[i].nomComplet,
+            progression.progression + "%"
+);
+}
+}
