@@ -135,3 +135,7 @@ if (choix === "9") {
         console.log(result[i].nomComplet);
     }
 }
+
+if (choix === "0" ) {
+    console.log("Au revoir!");
+}
