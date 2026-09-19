@@ -3,6 +3,7 @@ import {
     enregistrerResultat,
     rechercherApprenant,
     filtrerParNiveau,
+    calculerProgression,
     trierParProgression,
     afficherTableauDeBord
 } from "./progression.js";
@@ -96,3 +97,21 @@ if (apprenant === false) {
     console.log("Résultats :", apprenant.resultats);
 }
 }
+
+if (choix ===  "7") {
+    let niveau = prompt("Niveau :");
+    let resultat = filtrerParNiveau(niveau);
+    if (resultat.length === 0){
+        console.log("Aucun apprenant trouvé pour ce niveau.");
+    } else {
+      console.log("===== APPRENANTS =====");
+      for (let i = 0; i < resultat.length; i++) {
+        console.log(
+                resultat[i].nomComplet,
+                calculerProgression(resultat[i]).progression + "%",
+                calculerProgression(resultat[i]).niveau
+);
+}
+}
+}
+
