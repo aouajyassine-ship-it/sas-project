@@ -127,3 +127,11 @@ if (choix === "8") {
 );
 }
 }
+
+if (choix === "9") {
+    let result = trierParNom();
+    console.log("===== ORDRE ALPHABÉTIQUE =====");
+    for (let i = 0; i < result.length; i++) {
+        console.log(result[i].nomComplet);
+    }
+}

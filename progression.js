@@ -199,6 +199,7 @@ export {
     rechercherApprenant,
     calculerProgression,
     filtrerParNiveau,
+    trierParNom,
     trierParProgression,
     afficherTableauDeBord
 };
