@@ -45,7 +45,7 @@ sas-project/
 Cloner le projet :
 
 ```bash
-git clone URL_DU_REPOSITORY
+git clone https://github.com/aouajyassine-ship-it/sas-project.git
 ```
 
 Accéder au dossier :
