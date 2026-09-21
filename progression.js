@@ -197,7 +197,7 @@ function afficherTableauDeBord() {
     console.log("En progression :", enProgression);
     console.log("À renforcer :", aRenforcer);
 }
-function trierParNom() {
+function trierParNom() {            // ordre alphabetique
     let resultats = [...apprenants];
     resultats.sort(function(apprenant1, apprenant2) {
         return apprenant1.nomComplet.localeCompare(apprenant2.nomComplet);
