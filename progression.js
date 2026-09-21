@@ -36,10 +36,13 @@ function normaliserNom(nom) {      // Nettoyer et uniformiser un nom
 
    function ajouterApprenant(id, nomComplet, ville) {           //Ajouter un apprenant en contrôlant les doublons d’identifiant
     let object = {} ;
+    if (!isNaN(Number(nomComplet)) || !isNaN(Number(ville))) {
+        return "texte_invalide";
+}
     for (let i = 0; i < apprenants.length; i++) {
     if (apprenants[i].id === id) {
        return false;
-    }
+}
 }
     object.id = id;
     object.nomComplet = normaliserNom(nomComplet);

@@ -47,8 +47,10 @@ if (choix === "3") {
     console.log(apprenants);
 if (resultat === true) {
     console.log("Apprenant ajouté avec succès.");
-} else {
+} else if (resultat === "id_existe") {
     console.log("Erreur : cet ID existe déjà.");
+} else if (resultat === "texte_invalide") {
+    console.log("Erreur : le nom et la ville ne doivent pas contenir de nombres.");
 }
 
 }
@@ -86,6 +88,18 @@ if (challengeTermine === "true") {
 );
     if (resultat === true) {
         console.log("Résultat enregistré avec succès.");
+        let apprenant = rechercherApprenant(id);
+        console.log("===== TABLEAU DE L'APPRENANT =====");
+        console.log("ID :", apprenant.id);
+        console.log("Nom :", apprenant.nomComplet);
+        console.log("Ville :", apprenant.ville);
+        console.log("Résultats :");
+
+    for (let i = 0; i < apprenant.resultats.length; i++) {
+        console.log(
+                "Jour :", apprenant.resultats[i].jour,"| Exercices :", apprenant.resultats[i].exercicesTermines + "/" + apprenant.resultats[i].totalExercices,"| Challenge :", apprenant.resultats[i].challengeTermine
+);
+        }
 } else {
         console.log("Erreur : résultat invalide ou apprenant introuvable.");
 }
