@@ -160,17 +160,12 @@ function afficherTableauDeBord() {
     let solide = 0;
     let enProgression = 0;
     let aRenforcer = 0;
-
     console.log("===== TABLEAU DE BORD =====");
     console.log("Total apprenants :", totalApprenants);
-
     for (let i = 0; i < totalApprenants; i++) {
-
         let indicateurs = calculerProgression(apprenants[i]);
-
         totalProgression = totalProgression + indicateurs.progression;
         totalChallenges = totalChallenges + indicateurs.challengesTermines;
-
         if (indicateurs.niveau === "Solide") {
             solide++;
 } else if (indicateurs.niveau === "En progression") {
