@@ -14,6 +14,8 @@ import { apprenants } from "./data.js";
  import promptSync from "prompt-sync";
 const prompt = promptSync();
 
+let choix = "";
+while (choix !== "0") {
 console.log("===== SAS PROGRESS CONSOLE =====");
 console.log("1. Afficher le tableau de bord");
 console.log("2. Afficher la liste des apprenants");
@@ -26,7 +28,7 @@ console.log("8. Trier les apprenants par progression décroissante");
 console.log("9. Trier les apprenants par ordre alphabétique");
 console.log("0. Quitter");
 
-let choix = prompt("Votre choix : ");
+ choix = prompt("Votre choix : ");
 console.log("Vous avez choisi :", choix);
 
 if (choix === "1") {
@@ -38,7 +40,7 @@ if (choix === "2") {
 }
 
 if (choix === "3") {
-    let id = prompt("ID : ");
+    let id = Number(prompt("ID : "));
     let nomComplet = prompt("Nom complet : ");
     let ville = prompt("Ville : ");
     let resultat = ajouterApprenant(id, nomComplet, ville);
@@ -51,12 +53,16 @@ if (resultat === true) {
 
 }
 if (choix === "4") {
-    let id = prompt("Identifiant de l'apprenant : ");
+    let id = Number(prompt("ID de l'apprenant : "));
     let apprenant = rechercherApprenant(id);
-if (apprenant === false) {
+    if (apprenant === false) {
         console.log("Apprenant introuvable.");
 } else {
-        console.log(apprenant);
+        console.log("===== APPRENANT =====");
+        console.log("ID :", apprenant.id);
+        console.log("Nom :", apprenant.nomComplet);
+        console.log("Ville :", apprenant.ville);
+        console.log("Résultats :", apprenant.resultats);
 }
 }
 
@@ -117,14 +123,14 @@ if (choix ===  "7") {
 }
 
 if (choix === "8") {
-    let result = trierParProgression();
-    console.log("===== PROGRESSION DÉCROISSANTE =====");
-    for (let i = 0; i < result.length; i++) {
-        let progression = calculerProgression(result[i]);
-        console.log(
-            result[i].nomComplet,
-            progression.progression + "%"
-);
+    let resultats = trierParProgression();
+
+for (let i = 0; i < resultats.length; i++) {
+    console.log(
+    resultats[i].nomComplet,
+     "-",
+calculerProgression(resultats[i]).progression + "%"
+    );
 }
 }
 
@@ -138,4 +144,7 @@ if (choix === "9") {
 
 if (choix === "0" ) {
     console.log("Au revoir!");
+} 
 }
+
+

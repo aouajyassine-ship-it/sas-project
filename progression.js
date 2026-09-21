@@ -42,7 +42,7 @@ function normaliserNom(nom) {      // Nettoyer et uniformiser un nom
     }
 }
     object.id = id;
-    object.nomComplet = nomComplet;
+    object.nomComplet = normaliserNom(nomComplet);
     object.ville = ville;
     object.resultats = [];
     apprenants.push(object);
@@ -118,7 +118,7 @@ function calculerProgression(apprenant) {          //Produire les indicateurs in
    }else if (progression >= 50) {
     niveau = "En progression";
    } else {
-    niveau = "À renforcer";
+    niveau = "A renforcer";
    }
    return {
     progression: progression,
@@ -150,40 +150,50 @@ function trierParProgression() {      //Classer les profils par progression déc
     return resultats;
 }
 
-function afficherTableauDeBord() {               // Présenter les indicateurs du groupe et les listes
-  let totalApprenants = apprenants.length;
-  let totalProgression = 0;
-  let totalChallenges = 0;
-  let solide = 0;
-  let enProgression = 0;
-  let aRenforcer = 0;
-  for (let i = 0 ; i < totalApprenants ; i++) {
-    totalProgression = totalProgression + calculerProgression(apprenants[i]).progression;
-    totalChallenges = totalChallenges + calculerProgression(apprenants[i]).challengesTermines;
-    let niveau = calculerProgression(apprenants[i]).niveau;
-    if (niveau === "Solide") {
-    solide++;
-}   else if (niveau === "En progression") {
-    enProgression++;
-}   else {
-    aRenforcer++;
-}
-}
-  let progressionMoyenne = 0;
-  if (totalApprenants > 0) {
-    progressionMoyenne = totalProgression / totalApprenants;
-}
-  console.log("===== TABLEAU DE BORD =====");
-  console.log("Total apprenants :", totalApprenants);
-  console.log("Progression moyenne :", progressionMoyenne + "%");
-  console.log("Challenges terminés :", totalChallenges);
+function afficherTableauDeBord() {
+    let totalApprenants = apprenants.length;
+    let totalProgression = 0;
+    let totalChallenges = 0;
+    let solide = 0;
+    let enProgression = 0;
+    let aRenforcer = 0;
 
-  console.log("===== NIVEAUX =====");
-  console.log("Solide :", solide);
-  console.log("En progression :", enProgression);
-  console.log("À renforcer :", aRenforcer);
-}
+    console.log("===== TABLEAU DE BORD =====");
+    console.log("Total apprenants :", totalApprenants);
 
+    for (let i = 0; i < totalApprenants; i++) {
+
+        let indicateurs = calculerProgression(apprenants[i]);
+
+        totalProgression = totalProgression + indicateurs.progression;
+        totalChallenges = totalChallenges + indicateurs.challengesTermines;
+
+        if (indicateurs.niveau === "Solide") {
+            solide++;
+} else if (indicateurs.niveau === "En progression") {
+            enProgression++;
+} else {
+            aRenforcer++;
+}
+        console.log(
+            apprenants[i].nomComplet,
+            "-",
+            indicateurs.progression + "%",
+            "-",
+            indicateurs.niveau
+);
+}
+    let progressionMoyenne = 0;
+    if (totalApprenants > 0) {
+        progressionMoyenne = totalProgression / totalApprenants;
+    }
+    console.log("Progression moyenne :", progressionMoyenne + "%");
+    console.log("Challenges terminés :", totalChallenges);
+    console.log("===== NIVEAUX =====");
+    console.log("Solide :", solide);
+    console.log("En progression :", enProgression);
+    console.log("À renforcer :", aRenforcer);
+}
 function trierParNom() {
     let resultats = [...apprenants];
     resultats.sort(function(apprenant1, apprenant2) {
